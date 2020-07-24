@@ -1,0 +1,9 @@
+{
+    "name": "Hetzner",
+    "service_url": "https://hetzner.com",
+    "documentation":  "https://dns.hetzner.com/api-docs",
+    "id": "hetzner",
+    "credentials": {
+        "api_key": "exampleKey"
+    }
+}
