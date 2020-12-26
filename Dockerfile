@@ -1,6 +1,8 @@
 FROM golang:1-buster AS builder
 
-ENV VERSION=0.1.0
+ARG VERSION
+ARG GOOS
+ARG GOARCH
 
 COPY . /workdir
 
@@ -9,8 +11,6 @@ WORKDIR /workdir
 RUN go build -v -ldflags="-s -w -X 'main.appVersion=$VERSION'" -o ddns-client
 
 FROM debian:buster-slim
-
-ENV HETZNER_API_KEY=
 
 COPY --from=builder /workdir/ddns-client /ddns-client
 
