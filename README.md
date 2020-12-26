@@ -39,7 +39,7 @@ Command line flags
 ------------------
 -   **-d, --dns**       comma separated list of FQDN of records to set
 -   **-p, --provider**  provider hosting the DNS zone
--   **-i, --interval**  interval to check records status in time format (30m, 1h, 2d, 1w ...)
+-   **-i, --interval**  interval to check records status in time format (e.g. 30m, 1h)
 -   **-l, --log**       set log file path to use. default: none (print to console)
 -   **-h, --help**      print available options
 -   **-v, --version**   print away client version

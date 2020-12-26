@@ -25,7 +25,7 @@ var (
 func init() {
 	pflag.StringVarP(&prov, "provider", "p", "hetzner", "provider hosting the DNS zone")
 	pflag.StringSliceVarP(&dnsName, "dns", "d", nil, "comma separated list of FQDN of records to set")
-	pflag.StringVarP(&interval, "interval", "i", "", "Interval to check records status")
+	pflag.StringVarP(&interval, "interval", "i", "", "Interval to check records status (e.g. 30m, 1h)")
 	pflag.StringVarP(&logfile, "log", "l", "", "set log file path to use. default: none (print to console)")
 	pflag.BoolVarP(&help, "help", "h", false, "print available options")
 	pflag.BoolVarP(&version, "version", "v", false, "print ddns-client version")
