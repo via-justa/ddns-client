@@ -4,7 +4,7 @@
 General
 -------
 
-ddns-client is a Go client to update public DNS with your current IP (a.k.a DDNS).
+ddns-client is a Go client to update public DNS with your current IP (a.k.a DynDNS).
 
 Supported Operating systems
 ---------------------------
