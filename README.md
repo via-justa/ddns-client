@@ -29,8 +29,9 @@ go build
 
 Command line flags
 ------------------
--   **-d, --dns**       FQDN of record to set
+-   **-d, --dns**       comma separated list of FQDN of records to set
 -   **-p, --provider**  provider hosting the DNS zone
+-   **-i, --interval**  interval to check records status in time format (30m, 1h, 2d, 1w ...)
 -   **-l, --log**       set log file path to use. default: none (print to console)
 -   **-h, --help**      print available options
 -   **-v, --version**   print away client version
@@ -48,7 +49,9 @@ Issues and feature requests
 I'm more than happy to reply to any issue of feature request via the github issue tracker.
 When opening an issue, please provide the version you're using and any useful information that can be used to investigate the issue.
 
-If you like to suggest improvements please provide relevant use case it solves
+If you like to suggest improvements please provide relevant use case it solves.
+
+Requests to add providers should include link to the provider API documentation and information if the provider can set a send box environment.
 
 Pull requests are welcomed, just try to keep the structure as close to the existing ones.
 
