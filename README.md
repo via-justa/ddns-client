@@ -18,6 +18,13 @@ Installation
 -   Download the relevant version from the [release page](https://github.com/via-justa/ddns-client/releases)
 -   Set the relevant Environment variables to your provider.
 
+Running in Docker
+------------
+
+```
+docker pull viajusta/ddns-client
+docker run --rm -e <provider env var>=<val> viajusta/ddns-client -p <provider> -d <comma separated list of FQDN> -i <interval>
+
 Build from source
 ------------
 
@@ -41,7 +48,7 @@ Supported providers and required environment variables
 
 |Provider|Environment variables|
 |---|---|
-| Hetzner | `HETZNER_API_KEY` |
+| hetzner | `HETZNER_API_KEY` |
 
 Issues and feature requests
 -----------
