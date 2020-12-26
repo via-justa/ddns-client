@@ -14,7 +14,7 @@ import (
 var (
 	appVersion = "undefined"
 	prov       string
-	dnsName    string
+	dnsName    []string
 	logfile    string
 	help       bool
 	version    bool
@@ -22,10 +22,11 @@ var (
 
 func init() {
 	pflag.StringVarP(&prov, "provider", "p", "hetzner", "provider hosting the DNS zone")
-	pflag.StringVarP(&dnsName, "dns", "d", "", "FQDN of record to set")
+	pflag.StringSliceVarP(&dnsName, "dns", "d", nil, "list of FQDN of records to set")
+	// pflag.StringVarP(&dnsName, "dns", "d", "", "FQDN of record to set")
 	pflag.StringVarP(&logfile, "log", "l", "", "set log file path to use. default: none (print to console)")
 	pflag.BoolVarP(&help, "help", "h", false, "print available options")
-	pflag.BoolVarP(&version, "version", "v", false, "print away-client version")
+	pflag.BoolVarP(&version, "version", "v", false, "print ddns-client version")
 	pflag.Parse()
 }
 
@@ -36,7 +37,7 @@ func main() {
 	}
 
 	if version {
-		log.Printf("away-client version: %v", appVersion)
+		log.Printf("ddns-client version: %v", appVersion)
 		return
 	}
 
@@ -68,11 +69,13 @@ func main() {
 		log.Fatal(err)
 	}
 
-	log.Printf("DNS Name: %v", dnsName)
-	idx := strings.Index(dnsName, ".")
+	for i := range dnsName {
+		log.Printf("DNS Name: %v", dnsName[i])
+		idx := strings.Index(dnsName[i], ".")
 
-	err = prov.Update(dnsName[:idx], dnsName[idx+1:], ip)
-	if err != nil {
-		log.Fatal(err)
+		err = prov.Update(dnsName[i][:idx], dnsName[i][idx+1:], ip)
+		if err != nil {
+			log.Fatal(err)
+		}
 	}
 }
