@@ -24,6 +24,7 @@ Running in Docker
 ```
 docker pull viajusta/ddns-client
 docker run --rm -e <provider env var>=<val> viajusta/ddns-client -p <provider> -d <comma separated list of FQDN> -i <interval>
+```
 
 Build from source
 ------------
