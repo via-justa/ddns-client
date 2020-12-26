@@ -1,12 +1,12 @@
 FROM golang:1-buster AS builder
 
 ARG VERSION
-ARG GOOS
-ARG GOARCH
 
 COPY . /workdir
 
 WORKDIR /workdir
+
+RUN go env
 
 RUN go build -v -ldflags="-s -w -X 'main.appVersion=$VERSION'" -o ddns-client
 
