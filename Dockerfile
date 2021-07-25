@@ -1,21 +1,20 @@
-FROM golang:1-buster AS builder
+FROM golang:1-alpine AS builder
 
 ARG VERSION
-ARG GOOS
-ARG GOARCH
 
 COPY . /workdir
 
 WORKDIR /workdir
 
+RUN go env
 RUN go build -v -ldflags="-s -w -X 'main.appVersion=$VERSION'" -o ddns-client
 
-FROM debian:buster-slim
+FROM alpine
 
 COPY --from=builder /workdir/ddns-client /ddns-client
 
 RUN chmod +x /ddns-client
 
-RUN apt update && apt install ca-certificates -y
+RUN apk add ca-certificates
 
 ENTRYPOINT [ "/ddns-client" ]
