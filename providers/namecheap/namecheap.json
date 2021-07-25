@@ -1,0 +1,9 @@
+{
+    "name": "NameCheap",
+    "service_url": "https://namecheap.com",
+    "documentation":  "https://www.namecheap.com/support/api/intro/",
+    "id": "namecheap",
+    "credentials": {
+        "api_key": "exampleKey"
+    }
+}

@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/via-justa/ddns-client/providers/hetzner"
+	"github.com/via-justa/ddns-client/providers/namecheap"
 )
 
 // Provider enables implementing a custom DNS provider
@@ -18,6 +19,8 @@ func NewDNSProvider(provider string) (Provider, error) {
 	switch provider {
 	case "hetzner":
 		return hetzner.NewDNSProvider()
+	case "namecheap":
+		return namecheap.NewDNSProvider()
 	}
 
 	return nil, fmt.Errorf("No valid proveder has been selected. Please use valid provider")
