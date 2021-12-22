@@ -3,7 +3,7 @@ package internal
 import (
 	"encoding/xml"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 )
@@ -25,6 +25,10 @@ func NewClient() *Client {
 	}
 }
 
+func identReader(encoding string, input io.Reader) (io.Reader, error) {
+	return input, nil
+}
+
 /*
 UpdateRecord update a Dynamic DNS record.
 https://www.namecheap.com/support/knowledgebase/article.aspx/29/11/how-do-i-use-a-browser-to-dynamically-update-the-hosts-ip/
@@ -43,9 +47,9 @@ func (c *Client) UpdateRecord(requestParams *RequestParams) error {
 
 	var responseBody Response
 
-	body, _ := ioutil.ReadAll(resp.Body)
-
-	if err = xml.Unmarshal(body, &responseBody); err != nil {
+	decoder := xml.NewDecoder(resp.Body)
+	decoder.CharsetReader = identReader
+	if err = decoder.Decode(&responseBody); err != nil {
 		return fmt.Errorf("namecheap: %w", err)
 	}
 
