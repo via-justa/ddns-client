@@ -49,6 +49,7 @@ func (c *Client) UpdateRecord(requestParams *RequestParams) error {
 
 	decoder := xml.NewDecoder(resp.Body)
 	decoder.CharsetReader = identReader
+
 	if err = decoder.Decode(&responseBody); err != nil {
 		return fmt.Errorf("namecheap: %w", err)
 	}
